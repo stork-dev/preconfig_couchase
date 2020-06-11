@@ -38,7 +38,7 @@ couchbase-cli cluster-init -c 127.0.0.1 --cluster-username Administrator --clust
 # Create the buckets
 log "$(date +"%T") Create buckets ........."
 couchbase-cli bucket-create -c 127.0.0.1 --username Administrator --password password --bucket-type couchbase --bucket-ramsize 250 --bucket bucket1
-couchbase-cli bucket-create -c 127.0.0.1 --username Administrator --password password --bucket-type couchbase --bucket-ramsize 250 --bucket bucket2
+couchbase-cli bucket-create -c 127.0.0.1 --username Administrator --password password --bucket-type couchbase --bucket-ramsize 250 --bucket Sample_Bucket
 
 # Create user
 log "$(date +"%T") Create users ........."
@@ -59,10 +59,11 @@ cbq -u Administrator -p password -s "CREATE INDEX idx_type ON \`bucket1\`(_type)
 cbq -u Administrator -p password -s "CREATE INDEX idx_account_id ON \`bucket1\`(id) WHERE (_type = \"account\");"
 
 # Create bucket2 indexes
-echo "$(date +"%T") Create bucket2 indexes ........."
-cbq -u Administrator -p password -s "CREATE PRIMARY INDEX idx_primary ON \`bucket1\`;"
-cbq -u Administrator -p password -s "CREATE INDEX idx_event_ruleId ON \`bucket1\`(ruleId) WHERE (_type = \"event\");"
-cbq -u Administrator -p password -s "CREATE INDEX idx_event_startTime ON \`bucket1\`(startTime) WHERE (_type = \"event\");"
+#echo "$(date +"%T") Create bucket2 indexes ........."
+#cbq -u Administrator -p password -s "CREATE PRIMARY INDEX idx_primary ON \`bucket1\`;"
+#cbq -u Administrator -p password -s "CREATE INDEX idx_event_ruleId ON \`bucket1\`(ruleId) WHERE (_type = \"event\");"
+#cbq -u Administrator -p password -s "CREATE INDEX idx_event_startTime ON \`bucket1\`(startTime) WHERE (_type = \"event\");"
+log "$(date +"%T") Setup finished"
 
 fg 1
 
